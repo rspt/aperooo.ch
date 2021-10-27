@@ -35,11 +35,11 @@
                             </li>
                         @endauth
 
-                        @if (session('locale') == 'fr')
+                        @if (session('locale') === 'fr' || session('locale') === 'fr-CH')
                             <li class="nav-item">
                                 <a href="/lang/en" class="nav-link">English</a>
                             </li>
-                        @elseif (session('locale') == 'en')
+                        @elseif (session('locale') === 'en')
                             <li class="nav-item">
                                 <a href="/lang/fr" class="nav-link">Français</a>
                             </li>
