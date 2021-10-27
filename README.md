@@ -1,10 +1,14 @@
 # Apérooo
 
-> [aperooo.ch](https://aperooo.ch)
+[aperooo.ch](https://aperooo.ch)
 
 ## Development
+
+> This project use Laravel 8.x
+
 - Clone the repository
-- Duplicate `.env.example` to `.env` and modify variables accordingly
 - Install dependencies: `composer install`
-- Run migrations: `php artisan migrate:fresh`
+- Duplicate `.env.example` to `.env` and modify variables accordingly
+- Generate APP_KEY: `php artisan key:generate`
+- Run migrations: `php artisan migrate`
 - Run the server: `php artisan serve`
