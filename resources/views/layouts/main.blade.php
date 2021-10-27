@@ -19,6 +19,8 @@
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link">{{ __('site.home') }}</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
                         @guest
                             <li class="nav-item">
                                 <a href="{{ route('auth.register') }}" class="nav-link">{{ __('auth.create_account') }}</a>
