@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
@@ -18,6 +19,15 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) {
+        abort(400);
+    }
+
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
 
 // Auth routes
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');

@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'login' => 'Login',
-    'logout' => 'Logout',
-    'username' => 'Username',
-    'password' => 'Password',
-    'create_account' => 'Create account',
+    'login' => 'Connexion',
+    'logout' => 'Déconnexion',
+    'username' => 'Nom d\'utilisateur',
+    'password' => 'Mot de passe',
+    'create_account' => 'Créer un compte',
 ];
