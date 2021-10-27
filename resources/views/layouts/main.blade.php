@@ -29,7 +29,7 @@
                         @endguest
                         @auth
                             <li class="nav-item">
-                                <a href="{{ route('auth.logout') }}" class="nav-link">{{ Auth::user()->username }} - {{ _('auth.logout') }}</a>
+                                <a href="{{ route('auth.logout') }}" class="nav-link">{{ Auth::user()->username }} - {{ __('auth.logout') }}</a>
                             </li>
                         @endauth
 
