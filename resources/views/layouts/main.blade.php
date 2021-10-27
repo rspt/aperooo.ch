@@ -19,6 +19,16 @@
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link">{{ __('site.home') }}</a>
                         </li>
+                        @can ('create', App\Models\Apero::class)
+                            <li class="nav-item">
+                                <a href="{{ route('aperos.create') }}" class="nav-link">{{ __('site.create_aperos') }}</a>
+                            </li>
+                        @endcan
+                        @auth
+                            <li class="nav-item">
+                                <a href="{{ route('aperos.index') }}" class="nav-link">{{ __('site.aperos') }}</a>
+                            </li>
+                        @endauth
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         @guest

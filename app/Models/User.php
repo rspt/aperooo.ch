@@ -31,4 +31,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function aperos()
+    {
+        return $this->hasMany(Apero::class, 'host_id');
+    }
 }

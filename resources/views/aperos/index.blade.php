@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>{{ __('site.home') }}</h1>
+    <h1>{{ __('site.aperos') }}</h1>
 
     <ul>
-        @foreach ($aperos as $apero)
+        @foreach ($userAperos as $apero)
             <li>
                 <a href="{{ route('aperos.show', $apero) }}">
                     {{ $apero->host->username }} - {{ $apero->start }} - {{ $apero->address }}
