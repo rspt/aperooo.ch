@@ -42,3 +42,4 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 // Postulations route
 Route::post('/postulations', [PostulationController::class, 'store'])->name('postulations.store');
 Route::get('/mypostulations', [PostulationController::class, 'index'])->name('postulations.index');
+Route::post('/cancelled_postulations', [PostulationController::class, 'cancel'])->name('postulations.cancel');

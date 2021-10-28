@@ -8,6 +8,12 @@
         <input type="hidden" name="apero_id" value="{{ $apero->id }}">
         <button type="submit" class="btn btn-success">{{ __('postulations.apply') }}</button>
     </form>
+    <form action="{{ route('postulations.cancel', $apero, Auth::user()) }}" method="post">
+        @csrf
+        
+        <input type="hidden" name="apero_id" value="{{ $apero->id }}">
+        <button type="submit" class="btn btn-warning">{{ __('postulations.cancel') }}</button>
+    </form>
 
     @canany(['update', 'delete'], $apero)
         <hr>

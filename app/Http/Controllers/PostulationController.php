@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Apero;
 use App\Models\Postulation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PostulationController extends Controller
@@ -18,12 +20,21 @@ class PostulationController extends Controller
     {
         $aperoUser = Auth::user()->id;
         $aperoPostulate = Postulation::all()->where('user_id', $aperoUser);
-        $aperoWanted = [];
+        $aperoOpen = [];
         foreach ($aperoPostulate as $apero) {
-            array_push($aperoWanted, Apero::find($apero->apero_id));
+            if($apero->status == 'open'){
+            array_push($aperoOpen, Apero::find($apero->apero_id));
+            }
         }
-        
-        return view('postulations.index', compact('aperoWanted'));
+
+        $aperoCancelled = [];
+        foreach ($aperoPostulate as $apero) {
+            if($apero->status == 'cancelled'){
+            array_push($aperoCancelled, Apero::find($apero->apero_id));
+            }
+        }
+      
+        return view('postulations.index', compact('aperoOpen', 'aperoCancelled'));
     }
 
     /**
@@ -87,6 +98,27 @@ class PostulationController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Postulation  $postulation
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel()
+    {
+        // $postulation = Postulation::find(1)
+        //                 ->where('user_id', $user->id)
+        //                 ->where('apero_id', $apero->id)
+        //                 ->getStatus();
+        // dd($postulation);
+
+        $apero = Apero::find(1);
+
+
+        return redirect()->route('postulations.index');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Postulation  $postulation
@@ -94,6 +126,6 @@ class PostulationController extends Controller
      */
     public function destroy(Postulation $postulation)
     {
-        //
+        
     }
 }
