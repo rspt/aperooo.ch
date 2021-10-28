@@ -9,6 +9,4 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class Postulation extends Pivot
 {
     protected $table = 'postulations';
-
-   
 }
