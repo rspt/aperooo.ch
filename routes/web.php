@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AperoController;
+use App\Http\Controllers\PostulationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,7 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authe
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'createAccount'])->name('auth.createAccount');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+// Postulations route
+Route::post('/postulations', [PostulationController::class, 'store'])->name('postulations.store');
+Route::get('/mypostulations', [PostulationController::class, 'index'])->name('postulations.index');

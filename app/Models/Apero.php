@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Apero extends Model
@@ -25,6 +26,11 @@ class Apero extends Model
     public function host()
     {
         return $this->belongsTo(User::class, 'host_id');
+    }
+
+    public function postulations()
+    {
+        return $this->belongsToMany(User::class)->using(Postulation::class);
     }
 
     public function getStartFormAttribute()

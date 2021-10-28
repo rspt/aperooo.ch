@@ -28,6 +28,9 @@
                             <li class="nav-item">
                                 <a href="{{ route('aperos.index') }}" class="nav-link">{{ __('site.aperos') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('postulations.index') }}" class="nav-link">{{ __('postulations.aperoSubmitted') }}</a>
+                            </li>
                         @endauth
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">

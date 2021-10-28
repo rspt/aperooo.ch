@@ -3,6 +3,12 @@
 @section('content')
     {{ $apero->host->username }} - {{ $apero->start }} - {{ $apero->address }}
 
+    <form action="{{ route('postulations.store') }}" method="post">
+        @csrf
+        <input type="hidden" name="apero_id" value="{{ $apero->id }}">
+        <button type="submit" class="btn btn-success">{{ __('postulations.apply') }}</button>
+    </form>
+
     @canany(['update', 'delete'], $apero)
         <hr>
 
