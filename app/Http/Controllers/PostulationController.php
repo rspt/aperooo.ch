@@ -22,7 +22,7 @@ class PostulationController extends Controller
         $aperoPostulate = Postulation::all()->where('user_id', $aperoUser);
         $aperoOpen = [];
         foreach ($aperoPostulate as $apero) {
-            if($apero->status == 'open'){
+            if($apero->status == 'open') {
             array_push($aperoOpen, Apero::find($apero->apero_id));
             }
         }
