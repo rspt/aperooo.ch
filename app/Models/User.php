@@ -41,6 +41,6 @@ class User extends Authenticatable
 
     public function postulations()
     {
-        return $this->belongsToMany(Apero::class)->using(Postulation::class);
+        return $this->belongsToMany(Apero::class)->using(Postulation::class)->withPivot(['id', 'status']);
     }
 }

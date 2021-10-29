@@ -40,6 +40,7 @@ Route::post('/register', [AuthController::class, 'createAccount'])->name('auth.c
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Postulations route
-Route::post('/postulations', [PostulationController::class, 'store'])->name('postulations.store');
+Route::post('/aperos/{apero}/postulations', [PostulationController::class, 'store'])->name('postulations.store');
+Route::patch('/aperos/{apero}/postulations/{postulation}/cancel', [PostulationController::class, 'cancel'])->name('postulations.cancel');
+
 Route::get('/mypostulations', [PostulationController::class, 'index'])->name('postulations.index');
-Route::post('/cancelled_postulations', [PostulationController::class, 'cancel'])->name('postulations.cancel');

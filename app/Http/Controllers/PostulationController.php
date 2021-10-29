@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PostulationController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Postulation::class, 'postulation', [
+            'except' => ['store'],
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,23 +25,13 @@ class PostulationController extends Controller
      */
     public function index()
     {
-        $aperoUser = Auth::user()->id;
-        $aperoPostulate = Postulation::all()->where('user_id', $aperoUser);
-        $aperoOpen = [];
-        foreach ($aperoPostulate as $apero) {
-            if($apero->status == 'open') {
-            array_push($aperoOpen, Apero::find($apero->apero_id));
-            }
-        }
+        $aperos = Auth::user()->postulations;
+        $aperos = [
+            'open' => $aperos->where('pivot.status', 'open'),
+            'cancelled' => $aperos->where('pivot.status', 'cancelled'),
+        ];
 
-        $aperoCancelled = [];
-        foreach ($aperoPostulate as $apero) {
-            if($apero->status == 'cancelled'){
-            array_push($aperoCancelled, Apero::find($apero->apero_id));
-            }
-        }
-      
-        return view('postulations.index', compact('aperoOpen', 'aperoCancelled'));
+        return view('postulations.index', compact('aperos'));
     }
 
     /**
@@ -53,14 +50,16 @@ class PostulationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Apero $apero)
     {
+        $this->authorize('create', [Postulation::class, $apero]);
+
         Postulation::create([
             'user_id' => Auth::user()->id,
-            'apero_id' => $request->apero_id,
+            'apero_id' => $apero->id,
         ]);
 
-        return redirect()->route('postulations.index', 'user_id');
+        return redirect()->route('aperos.show', $apero->id);
     }
 
     /**
@@ -104,18 +103,12 @@ class PostulationController extends Controller
      * @param  \App\Models\Postulation  $postulation
      * @return \Illuminate\Http\Response
      */
-    public function cancel()
+    public function cancel(Request $request, Apero $apero, Postulation $postulation)
     {
-        // $postulation = Postulation::find(1)
-        //                 ->where('user_id', $user->id)
-        //                 ->where('apero_id', $apero->id)
-        //                 ->getStatus();
-        // dd($postulation);
+        $postulation->status = 'cancelled';
+        $postulation->save();
 
-        $apero = Apero::find(1);
-
-
-        return redirect()->route('postulations.index');
+        return redirect()->route('aperos.show', $postulation->apero_id);
     }
 
     /**
@@ -126,6 +119,6 @@ class PostulationController extends Controller
      */
     public function destroy(Postulation $postulation)
     {
-        
+        //
     }
 }
