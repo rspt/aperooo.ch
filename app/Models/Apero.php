@@ -28,9 +28,9 @@ class Apero extends Model
         return $this->belongsTo(User::class, 'host_id');
     }
 
-    public function postulations()
+    public function postulants()
     {
-        return $this->belongsToMany(User::class)->using(Postulation::class);
+        return $this->belongsToMany(User::class)->using(Postulation::class)->withPivot(['id', 'status'])->as('postulation');
     }
 
     public function getStartFormAttribute()

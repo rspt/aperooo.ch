@@ -13,7 +13,7 @@ class CreatePostulationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('postulations', function (Blueprint $table) {
+        Schema::create('apero_user', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained();
@@ -29,6 +29,6 @@ class CreatePostulationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('postulations');
+        Schema::dropIfExists('apero_user');
     }
 }
