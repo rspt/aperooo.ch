@@ -62,6 +62,12 @@
             </div>
         </nav>
 
+        @if (session('alert'))
+            <div class="container-fluid">
+                <x-alert :alert="session('alert')" />
+            </div>
+        @endif
+
         <div class="container-fluid">
             @yield('content')
         </div>

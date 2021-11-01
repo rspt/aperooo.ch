@@ -18,6 +18,7 @@ class CreatePostulationsTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('apero_id')->constrained();
+            $table->unique(['apero_id', 'user_id']);
             $table->enum('status', ['open', 'accepted', 'declined', 'cancelled'])->default('open');
         });
     }
