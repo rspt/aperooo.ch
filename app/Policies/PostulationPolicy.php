@@ -90,6 +90,52 @@ class PostulationPolicy
     }
 
     /**
+     * Determine whether the user can cancel the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Postulation  $postulation
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function accept(User $user, Postulation $postulation, Apero $apero)
+    {
+        // Cannot accept if not open
+        if ($postulation->status !== 'open') {
+            return false;
+        }
+
+        // Cannot accept if the user is not the host
+
+        if ($apero->host_id !== $user->id) {
+            return false;
+        }
+
+        return true;
+    }
+ 
+     /**
+     * Determine whether the user can cancel the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Postulation  $postulation
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function decline(User $user, Postulation $postulation, Apero $apero)
+    {
+        // Cannot decline if not open
+        if ($postulation->status !== 'open') {
+            return false;
+        }
+
+        // Cannot decline if the user is not the host
+
+        if ($apero->host_id !== $user->id) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user

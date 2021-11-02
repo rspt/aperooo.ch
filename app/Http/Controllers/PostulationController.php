@@ -8,7 +8,6 @@ use App\Models\Postulation;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PostulationController extends Controller
@@ -84,7 +83,7 @@ class PostulationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Postulation $postulation)
-    {
+    {     
         //
     }
 
@@ -120,9 +119,43 @@ class PostulationController extends Controller
      */
     public function cancel(Request $request, Apero $apero, Postulation $postulation)
     {
-        $this->authorize('cancel', [$postulation, $apero]);
+        $this->authorize('cancel', $postulation);
 
         $postulation->status = 'cancelled';
+        $postulation->save();
+
+        return redirect()->route('aperos.show', $postulation->apero_id);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Postulation  $postulation
+     * @return \Illuminate\Http\Response
+     */
+    public function accept(Request $request, Apero $apero, Postulation $postulation)
+    {
+        $this->authorize('accept', [$postulation, $apero]);
+
+        $postulation->status = 'accepted';
+        $postulation->save();
+
+        return redirect()->route('aperos.show', $postulation->apero_id);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Postulation  $postulation
+     * @return \Illuminate\Http\Response
+     */
+    public function decline(Request $request, Apero $apero, Postulation $postulation)
+    {
+        $this->authorize('decline', [$postulation, $apero]);
+
+        $postulation->status = 'declined';
         $postulation->save();
 
         return redirect()->route('aperos.show', $postulation->apero_id);

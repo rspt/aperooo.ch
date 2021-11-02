@@ -13,13 +13,28 @@
     <ul>
         @foreach ($apero->postulants as $postulant)
             <li>
-                {{ $postulant->postulation }}
+                L'utilisateur {{ $postulant->username }} est intéressé par l'apéro ! La postulation est {{ $postulant->postulation->status }}
+                {{-- {{ $postulant->postulation }} --}}
 
                 @can ('cancel', $postulant->postulation)
                     <form action="{{ route('postulations.cancel', [$apero, $postulant->postulation]) }}" method="post">
                         @csrf
                         @method('PATCH')
                         <button type="submit" class="btn btn-warning">{{ __('postulations.cancel') }}</button>
+                    </form>
+                @endcan
+                @can ('accept', [$postulant->postulation, $apero])
+                    <form action="{{ route('postulations.accept', [$apero, $postulant->postulation]) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-success">{{ __('postulations.accept') }}</button>
+                    </form>
+                @endcan
+                @can ('decline', [$postulant->postulation, $apero])
+                    <form action="{{ route('postulations.decline', [$apero, $postulant->postulation]) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-warning">{{ __('postulations.decline') }}</button>
                     </form>
                 @endcan
             </li>

@@ -44,3 +44,7 @@ Route::post('/aperos/{apero}/postulations', [PostulationController::class, 'stor
 Route::patch('/aperos/{apero}/postulations/{postulation}/cancel', [PostulationController::class, 'cancel'])->name('postulations.cancel');
 
 Route::get('/mypostulations', [PostulationController::class, 'index'])->name('postulations.index');
+
+Route::patch('/aperos/{apero}/postulations/{postulation}/accept', [PostulationController::class, 'accept'])->name('postulations.accept');
+
+Route::patch('/aperos/{apero}/postulations/{postulation}/decline', [PostulationController::class, 'decline'])->name('postulations.decline');
