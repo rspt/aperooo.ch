@@ -26,10 +26,12 @@ class PostulationController extends Controller
      */
     public function index()
     {
-        $aperos = Auth::user()->postulations;
+        $aperos = Auth::user()->postulations; 
         $aperos = [
             'open' => $aperos->where('pivot.status', 'open'),
             'cancelled' => $aperos->where('pivot.status', 'cancelled'),
+            'accepted' => $aperos->where('pivot.status', 'accepted'),
+            'declined' => $aperos->where('pivot.status', 'declined'),
         ];
 
         return view('postulations.index', compact('aperos'));

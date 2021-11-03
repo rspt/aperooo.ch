@@ -16,7 +16,7 @@ class AperoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class AperoPolicy
      * @param  \App\Models\Apero  $apero
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(?User $user, Apero $apero)
+    public function view(User $user, Apero $apero)
     {
         return true;
     }

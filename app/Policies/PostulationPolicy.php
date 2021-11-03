@@ -48,7 +48,7 @@ class PostulationPolicy
         }
 
         // If user has already postulated, he cannot do it once more
-        if (Postulation::where('apero_id', $apero->host_id)->where('user_id', $user->id)->exists()) {
+        if (Postulation::where('apero_id', $apero->id)->where('user_id', $user->id)->exists()) {
             return false;
         }
 

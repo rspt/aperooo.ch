@@ -1,7 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-    {{ $apero->host->username }} - {{ $apero->start }} - {{ $apero->address }}
+    <p>
+        {{ $apero->host->username }} - {{ $apero->start }}
+        @if ($apero->displayAddress)
+            - {{ $apero->address }}
+        @endif
+    </p>
 
     @can ('create', [App\Models\Postulation::class, $apero])
         <form action="{{ route('postulations.store', $apero) }}" method="post">
@@ -14,7 +19,6 @@
         @foreach ($apero->postulants as $postulant)
             <li>
                 L'utilisateur {{ $postulant->username }} est intéressé par l'apéro ! La postulation est {{ $postulant->postulation->status }}
-                {{-- {{ $postulant->postulation }} --}}
 
                 @can ('cancel', $postulant->postulation)
                     <form action="{{ route('postulations.cancel', [$apero, $postulant->postulation]) }}" method="post">
@@ -57,3 +61,4 @@
         @endcan
     @endcanany
 @endsection
+
