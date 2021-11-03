@@ -65,6 +65,20 @@ class AperoPolicy
      * @param  \App\Models\Apero  $apero
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    public function close(User $user, Apero $apero)
+    {
+        if ($user->id === $apero->host_id && $apero->postulable) {
+            return true;
+        }
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Apero  $apero
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
     public function delete(User $user, Apero $apero)
     {
         if ($user->id === $apero->host_id) {

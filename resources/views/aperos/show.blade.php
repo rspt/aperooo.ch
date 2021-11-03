@@ -7,6 +7,9 @@
             - {{ $apero->address }}
         @endif
     </p>
+    @if (!$apero->postulable)
+        <p>{{ __('postulations.closed') }}</p>
+    @endif
 
     @can ('create', [App\Models\Postulation::class, $apero])
         <form action="{{ route('postulations.store', $apero) }}" method="post">
@@ -45,11 +48,19 @@
         @endforeach
     </ul>
 
-    @canany(['update', 'delete'], $apero)
+    @canany(['update', 'delete', 'close'], $apero)
         <hr>
 
         @can('update', $apero)
             <a href="{{ route('aperos.edit', $apero) }}" class="btn btn-primary">{{ __('site.edit') }}</a>
+        @endcan
+
+        @can('close', $apero)
+            <form action="{{ route('aperos.close', $apero) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-info">{{ __('site.close') }}</button>
+            </form>
         @endcan
 
         @can('delete', $apero)

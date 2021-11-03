@@ -21,6 +21,7 @@ class CreateAperosTable extends Migration
 
             $table->dateTimeTz('start');
             $table->string('address');
+            $table->boolean('postulable')->default(true);
         });
     }
 

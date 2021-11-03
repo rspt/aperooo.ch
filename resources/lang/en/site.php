@@ -13,5 +13,6 @@ return [
     'usernameAlreadyExists' => 'This username already exists',
 
     'edit' => 'Edit',
+    'close' => 'Close the postulations',
     'delete' => 'Delete',
 ];

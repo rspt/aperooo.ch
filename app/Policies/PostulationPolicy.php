@@ -42,6 +42,11 @@ class PostulationPolicy
      */
     public function create(User $user, Apero $apero)
     {
+        // If apero is postulable 
+        if(!$apero->postulable) {
+            return false;
+        }
+        
         // If user is host, the user can't postulate
         if ($apero->host_id === $user->id) {
             return false;

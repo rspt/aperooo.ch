@@ -8,6 +8,8 @@ return [
     'aperoAccepted' => 'Aperos for which the host has accepted you',
     'aperoDeclined' => 'Aperos for which the host has refused you',
     'alreadyPostulate' => 'You already postulate to this Apero',
+    'closed' => 'Registrations are closed',
+
     'cancel' => 'Cancel the postulation',
     'accept' => 'Accept this member',
     'decline' => 'Decline this member',

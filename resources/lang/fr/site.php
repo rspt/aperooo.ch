@@ -13,5 +13,6 @@ return [
     'usernameAlreadyExists' => 'Ce pseudonyme est déjà utilisé',
 
     'edit' => 'Modifier',
+    'close' => 'Clore les postulations',
     'delete' => 'Supprimer',
 ];
