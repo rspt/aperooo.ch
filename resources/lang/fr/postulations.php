@@ -8,6 +8,7 @@ return [
     'aperoAccepted' => 'Apéros pour lesquels l\'hôte vous a accepté',
     'aperoDeclined' => 'Apéros pour lesquels l\'hôte vous a refusé',
     'alreadyPostulate' => 'Vous avez déjà postulé à cet apéro',
+    'cancel' => 'Annuler la postulation',
     'accept' => 'Accepter ce membre',
     'decline' => 'Refuser ce membre',
 

@@ -61,4 +61,3 @@
         @endcan
     @endcanany
 @endsection
-
