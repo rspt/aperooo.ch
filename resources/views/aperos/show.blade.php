@@ -18,7 +18,7 @@
     <ul>
         @foreach ($apero->postulants as $postulant)
             <li>
-                L'utilisateur {{ $postulant->username }} est intéressé par l'apéro ! La postulation est {{ $postulant->postulation->status }}
+                {{ __('postulations.status' . $postulant->postulation->status .', :Username', ['username' => $postulant->username]) }}
 
                 @can ('cancel', $postulant->postulation)
                     <form action="{{ route('postulations.cancel', [$apero, $postulant->postulation]) }}" method="post">
