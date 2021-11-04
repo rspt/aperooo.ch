@@ -42,7 +42,7 @@ class PostulationPolicy
      */
     public function create(User $user, Apero $apero)
     {
-        // If apero is postulable 
+        // If apero is postulable
         if(!$apero->postulable) {
             return false;
         }
@@ -109,7 +109,6 @@ class PostulationPolicy
         }
 
         // Cannot accept if the user is not the host
-
         if ($apero->host_id !== $user->id) {
             return false;
         }
@@ -132,7 +131,6 @@ class PostulationPolicy
         }
 
         // Cannot decline if the user is not the host
-
         if ($apero->host_id !== $user->id) {
             return false;
         }
