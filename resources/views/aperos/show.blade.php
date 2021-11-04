@@ -16,6 +16,10 @@
     @can ('create', [App\Models\Postulation::class, $apero])
         <form action="{{ route('postulations.store', $apero) }}" method="post">
             @csrf
+            <div class="mb-3">
+                <label for="motivation" class="form-label">{{ __('postulations.motivation') }}</label>
+                <input type="string" class="form-control" id="motivation" name="motivation">
+            </div>
             <button type="submit" class="btn btn-success">{{ __('postulations.apply') }}</button>
         </form>
     @endcan

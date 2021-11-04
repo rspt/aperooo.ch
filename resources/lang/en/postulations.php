@@ -13,6 +13,7 @@ return [
     'cancel' => 'Cancel the postulation',
     'accept' => 'Accept this member',
     'decline' => 'Decline this member',
+    'motivation' => 'You can leave a message to support your postulation',
 
     'statusopen, :Username' => 'User :Username is interested in this aperitif and his postulation is waiting for an answer from the host',
     'statusaccepted, :Username' => 'User :Username is interested in this party and his postulation has been accepted by the host',

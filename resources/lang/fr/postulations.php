@@ -13,6 +13,7 @@ return [
     'cancel' => 'Annuler la postulation',
     'accept' => 'Accepter ce membre',
     'decline' => 'Refuser ce membre',
+    'motivation' => 'Vous pouvez laisser un message pour appuyer votre postulation',
 
     'statusopen, :Username' => 'L\'utilisateur :Username est intéressé par cet apéro et sa postulation est en attente de réponse de l\'hôte',
     'statusaccepted, :Username' => 'L\'utilisateur :Username est intéressé par cet apéro et sa postulation a été acceptée par l\'hôte',

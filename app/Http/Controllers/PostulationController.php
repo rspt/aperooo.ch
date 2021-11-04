@@ -61,6 +61,7 @@ class PostulationController extends Controller
             Postulation::create([
                 'user_id' => Auth::user()->id,
                 'apero_id' => $apero->id,
+                'motivation' => $request->input('motivation'),
             ]);
         } catch (QueryException $e) {
             $sqlErrorCode = $e->errorInfo[1];
