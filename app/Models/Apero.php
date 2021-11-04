@@ -16,6 +16,8 @@ class Apero extends Model
      * @var string[]
      */
     protected $fillable = [
+        'title',
+        'description',
         'start',
         'address',
     ];

@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
+    <h2>{{ $apero->title }}</h2>
+    <p>{{ $apero->description }}</p>
     <p>
         {{ $apero->host->username }} - {{ $apero->start }}
         @if ($apero->displayAddress)
