@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>{{ __('site.edit_aperos') }}</h1>
+    <h1>{{ __('site.editAperos') }}</h1>
 
     <form action="{{ route('aperos.update', $apero) }}" method="post">
         @csrf
@@ -26,6 +26,6 @@
             <input type="string" class="form-control" id="address" name="address" value="{{ $apero->address }}" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">{{ __('site.edit_aperos') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('site.editAperos') }}</button>
     </form>
 @endsection

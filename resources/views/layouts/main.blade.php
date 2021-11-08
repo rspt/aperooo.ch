@@ -21,7 +21,7 @@
                         </li>
                         @can ('create', App\Models\Apero::class)
                             <li class="nav-item">
-                                <a href="{{ route('aperos.create') }}" class="nav-link">{{ __('site.create_aperos') }}</a>
+                                <a href="{{ route('aperos.create') }}" class="nav-link">{{ __('site.createAperos') }}</a>
                             </li>
                         @endcan
                         @auth
