@@ -54,7 +54,7 @@ class AperoPolicy
      */
     public function update(User $user, Apero $apero)
     {
-        if ($user->id === $apero->host_id) {
+        if ($user->isHostOf($apero)) {
             return true;
         }
 
@@ -70,7 +70,7 @@ class AperoPolicy
      */
     public function close(User $user, Apero $apero)
     {
-        if ($user->id === $apero->host_id && $apero->postulable) {
+        if ($user->isHostOf($apero) && $apero->isOpenForPostulation) {
             return true;
         }
 
@@ -86,7 +86,7 @@ class AperoPolicy
      */
     public function delete(User $user, Apero $apero)
     {
-        if ($user->id === $apero->host_id) {
+        if ($user->isHostOf($apero)) {
             return true;
         }
 

@@ -43,8 +43,7 @@ class PostulationPolicy
      */
     public function create(User $user, Apero $apero)
     {
-        // If apero is postulable and if user is not the host and has not postulated, the user can postulate
-        if ($apero->postulable && $apero->host_id !== $user->id && !Postulation::where('apero_id', $apero->id)->where('user_id', $user->id)->exists()) {
+        if ($apero->isOpenForPostulation && !$user->isHostOf($apero) && !$user->hasAlreadyPostulatedFor($apero)) {
             return true;
         }
 
@@ -93,8 +92,7 @@ class PostulationPolicy
      */
     public function accept(User $user, Postulation $postulation, Apero $apero)
     {
-        // Can accept if open and if the user is the host
-        if ($postulation->isOpen && $apero->host_id === $user->id) {
+        if ($postulation->isOpen && $user->isHostOf($apero)) {
             return true;
         }
 
@@ -110,8 +108,7 @@ class PostulationPolicy
      */
     public function decline(User $user, Postulation $postulation, Apero $apero)
     {
-        // Can decline if open and if the user is the host
-        if ($postulation->isOpen && $apero->host_id === $user->id) {
+        if ($postulation->isOpen && $user->isHostOf($apero)) {
             return true;
         }
 

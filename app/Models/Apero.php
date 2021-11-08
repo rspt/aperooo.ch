@@ -45,6 +45,11 @@ class Apero extends Model
         ]);
     }
 
+    public function getIsOpenForPostulation()
+    {
+        return $this->postulable;
+    }
+
     public function getStartFormAttribute()
     {
         return Carbon::parse($this->start)->format('Y-m-d\TH:i');
