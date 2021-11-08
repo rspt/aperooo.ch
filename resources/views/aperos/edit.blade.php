@@ -6,6 +6,15 @@
     <form action="{{ route('aperos.update', $apero) }}" method="post">
         @csrf
         @method('PATCH')
+        <div class="mb-3">
+            <label for="title" class="form-label">{{ __('aperos.title') }}</label>
+            <input type="string" class="form-control" id="title" name="title" value="{{ $apero->title }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">{{ __('aperos.description') }}</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required>{{ $apero->description }}</textarea>
+        </div>
 
         <div class="mb-3">
             <label for="start" class="form-label">{{ __('aperos.start') }}</label>

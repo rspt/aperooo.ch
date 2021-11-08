@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Apero;
 use App\Models\User;
+
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AperoPolicy
@@ -16,7 +17,7 @@ class AperoPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -28,7 +29,7 @@ class AperoPolicy
      * @param  \App\Models\Apero  $apero
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(?User $user, Apero $apero)
+    public function view(User $user, Apero $apero)
     {
         return true;
     }
@@ -56,6 +57,24 @@ class AperoPolicy
         if ($user->id === $apero->host_id) {
             return true;
         }
+
+        return false;
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Apero  $apero
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function close(User $user, Apero $apero)
+    {
+        if ($user->id === $apero->host_id && $apero->postulable) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -70,6 +89,8 @@ class AperoPolicy
         if ($user->id === $apero->host_id) {
             return true;
         }
+
+        return false;
     }
 
     /**

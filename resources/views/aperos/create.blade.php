@@ -5,6 +5,15 @@
 
     <form action="{{ route('aperos.store') }}" method="post">
         @csrf
+        <div class="mb-3">
+            <label for="title" class="form-label">{{ __('aperos.title') }}</label>
+            <input type="string" class="form-control" id="title" name="title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">{{ __('aperos.description') }}</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        </div>
 
         <div class="mb-3">
             <label for="start" class="form-label">{{ __('aperos.start') }}</label>

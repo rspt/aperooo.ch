@@ -19,8 +19,11 @@ class CreateAperosTable extends Migration
 
             $table->foreignId('host_id')->constrained('users');
 
+            $table->string('title');
+            $table->text('description');
             $table->dateTimeTz('start');
             $table->string('address');
+            $table->boolean('postulable')->default(true);
         });
     }
 

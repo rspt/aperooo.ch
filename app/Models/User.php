@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Apero;
+use App\Models\Postulation;
+
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -35,5 +36,10 @@ class User extends Authenticatable
     public function aperos()
     {
         return $this->hasMany(Apero::class, 'host_id');
+    }
+
+    public function postulations()
+    {
+        return $this->belongsToMany(Apero::class)->using(Postulation::class)->withPivot(['id', 'status']);
     }
 }

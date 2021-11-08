@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 class AuthController extends Controller
 {
@@ -49,13 +50,25 @@ class AuthController extends Controller
 
     public function createAccount(Request $request)
     {
-        $user = User::create([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-        ]);
+        try {
+            $user = User::create([
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+            ]);
+            // Auth the user
+            Auth::login($user, true);
+        } catch (QueryException $e) {
+            $sqlErrorCode = $e->errorInfo[1];
 
-        // Auth the user
-        Auth::login($user, true);
+            switch ($sqlErrorCode) {
+                case '1062':
+                    back()->with('alert', [
+                        'message' => 'site.usernameAlreadyExists',
+                        'type' => 'error',
+                    ]);
+                    break;
+            }
+        }
 
         return redirect()->route('home');
     }
