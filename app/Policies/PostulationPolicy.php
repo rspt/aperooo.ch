@@ -43,22 +43,11 @@ class PostulationPolicy
      */
     public function create(User $user, Apero $apero)
     {
-        // If apero is postulable
-        if (!$apero->postulable) {
-            return false;
+        if ($apero->isOpenForPostulation && !$user->isHostOf($apero) && !$user->hasAlreadyPostulatedFor($apero)) {
+            return true;
         }
 
-        // If user is host, the user can't postulate
-        if ($apero->host_id === $user->id) {
-            return false;
-        }
-
-        // If user has already postulated, he cannot do it once more
-        if (Postulation::where('apero_id', $apero->id)->where('user_id', $user->id)->exists()) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     /**
@@ -86,17 +75,12 @@ class PostulationPolicy
      */
     public function cancel(User $user, Postulation $postulation)
     {
-        // Cannot cancel if already cancelled
-        if ($postulation->isCancelled) {
-            return false;
+        // Can cancel if never cancelled and if the user is the one who did the postulation
+        if (!$postulation->isCancelled && $postulation->user_id === $user->id) {
+            return true;
         }
 
-        // Cannot cancel if the user is not the one who did the postulation
-        if ($postulation->user_id !== $user->id) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     /**
@@ -108,17 +92,11 @@ class PostulationPolicy
      */
     public function accept(User $user, Postulation $postulation, Apero $apero)
     {
-        // Cannot accept if not open
-        if (!$postulation->isOpen) {
-            return false;
+        if ($postulation->isOpen && $user->isHostOf($apero)) {
+            return true;
         }
 
-        // Cannot accept if the user is not the host
-        if ($apero->host_id !== $user->id) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
      /**
@@ -130,17 +108,11 @@ class PostulationPolicy
      */
     public function decline(User $user, Postulation $postulation, Apero $apero)
     {
-        // Cannot decline if not open
-        if (!$postulation->isOpen) {
-            return false;
+        if ($postulation->isOpen && $user->isHostOf($apero)) {
+            return true;
         }
 
-        // Cannot decline if the user is not the host
-        if ($apero->host_id !== $user->id) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     /**

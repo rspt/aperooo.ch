@@ -42,4 +42,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Apero::class)->using(Postulation::class)->withPivot(['id', 'status']);
     }
+
+    public function isHostOf(Apero $apero)
+    {
+        return $this->id === $apero->host_id;
+    }
+
+    public function hasAlreadyPostulatedFor(Apero $apero)
+    {
+        return Postulation::where('apero_id', $apero->id)->where('user_id', $this->id)->exists();
+    }
 }

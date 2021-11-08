@@ -9,7 +9,7 @@
             - {{ $apero->address }}
         @endif
     </p>
-    @if (!$apero->postulable)
+    @if (!$apero->isOpenForPostulation)
         <p>{{ __('postulations.closed') }}</p>
     @endif
 
