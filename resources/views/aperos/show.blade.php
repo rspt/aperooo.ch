@@ -18,7 +18,7 @@
             @csrf
             <div class="mb-3">
                 <label for="motivation" class="form-label">{{ __('postulations.motivation') }}</label>
-                <input type="string" class="form-control" id="motivation" name="motivation">
+                <textarea class="form-control" id="motivation" name="motivation" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-success">{{ __('postulations.apply') }}</button>
         </form>
@@ -43,7 +43,7 @@
                         @method('PATCH')
                         <div class="mb-3">
                             <label for="motivation" class="form-label">{{ __('postulations.update') }}</label>
-                            <input type="string" class="form-control" id="motivation" name="motivation" value="{{ $postulant->postulation->motivation }}">
+                            <textarea class="form-control" id="motivation" name="motivation" rows="3">{{ $postulant->postulation->motivation }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-success">{{ __('postulations.update') }}</button>
                     </form>
