@@ -18,7 +18,7 @@
             @csrf
             <div class="mb-3">
                 <label for="motivation" class="form-label">{{ __('postulations.motivation') }}</label>
-                <input type="string" class="form-control" id="motivation" name="motivation">
+                <textarea class="form-control" id="motivation" name="motivation" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-success">{{ __('postulations.apply') }}</button>
         </form>
@@ -27,8 +27,8 @@
     <ul>
         @foreach ($apero->postulants as $postulant)
             <li>
-                <p>{{ $postulant->postulation->motivation }}</p>
-                {{ __('postulations.status' . $postulant->postulation->status, ['username' => $postulant->username]) }}
+                <p>{!! nl2br(e($postulant->postulation->motivation)) !!}</p>
+                {{ __('postulations.status' . ucfirst($postulant->postulation->status), ['username' => $postulant->username]) }}
 
                 @can ('cancel', $postulant->postulation)
                     <form action="{{ route('postulations.cancel', [$apero, $postulant->postulation]) }}" method="post">
@@ -43,7 +43,7 @@
                         @method('PATCH')
                         <div class="mb-3">
                             <label for="motivation" class="form-label">{{ __('postulations.update') }}</label>
-                            <input type="string" class="form-control" id="motivation" name="motivation" value="{{ $postulant->postulation->motivation }}">
+                            <textarea class="form-control" id="motivation" name="motivation" rows="3">{{ $postulant->postulation->motivation }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-success">{{ __('postulations.update') }}</button>
                     </form>
