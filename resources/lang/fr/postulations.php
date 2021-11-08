@@ -16,9 +16,9 @@ return [
     'update' => 'Modifier ma postulation',
     'motivation' => 'Vous pouvez laisser un message pour appuyer votre postulation',
 
-    'statusopen' => 'L\'utilisateur :username est intéressé par cet apéro et sa postulation est en attente de réponse de l\'hôte',
-    'statusaccepted' => 'L\'utilisateur :username est intéressé par cet apéro et sa postulation a été acceptée par l\'hôte',
-    'statusdeclined' => 'L\'utilisateur :username est intéressé par cet apéro et sa postulation a été refusée par l\'hôte',
-    'statuscancelled' => 'L\'utilisateur :username était intéressé par cet apéro mais il a annulé sa postulation',
+    'statusOpen' => 'L\'utilisateur :username est intéressé par cet apéro et sa postulation est en attente de réponse de l\'hôte',
+    'statusAccepted' => 'L\'utilisateur :username est intéressé par cet apéro et sa postulation a été acceptée par l\'hôte',
+    'statusDeclined' => 'L\'utilisateur :username est intéressé par cet apéro et sa postulation a été refusée par l\'hôte',
+    'statusCancelled' => 'L\'utilisateur :username était intéressé par cet apéro mais il a annulé sa postulation',
 
 ];

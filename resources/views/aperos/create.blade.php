@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>{{ __('site.create_aperos') }}</h1>
+    <h1>{{ __('site.createAperos') }}</h1>
 
     <form action="{{ route('aperos.store') }}" method="post">
         @csrf
@@ -25,6 +25,6 @@
             <input type="string" class="form-control" id="address" name="address" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">{{ __('site.create_aperos') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('site.createAperos') }}</button>
     </form>
 @endsection
