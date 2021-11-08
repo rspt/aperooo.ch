@@ -18,7 +18,7 @@ class CreateAperosTable extends Migration
             $table->timestamps();
             $table->foreignId('host_id')->constrained('users');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->dateTimeTz('start');
             $table->string('address');
             $table->boolean('postulable')->default(true);

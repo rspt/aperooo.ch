@@ -69,7 +69,11 @@ class PostulationPolicy
      */
     public function update(User $user, Postulation $postulation)
     {
-        //
+        if ($postulation->status === 'open' && $postulation->user_id === $user->id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

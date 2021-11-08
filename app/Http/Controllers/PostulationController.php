@@ -108,9 +108,12 @@ class PostulationController extends Controller
      * @param  \App\Models\Postulation  $postulation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Postulation $postulation)
+    public function update(Request $request, Apero $apero, Postulation $postulation)
     {
-        //
+        $postulation->update([
+            'motivation' => $request->motivation,
+        ]);
+        return redirect()->route('aperos.show', $apero);
     }
 
     /**

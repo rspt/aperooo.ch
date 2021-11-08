@@ -8,12 +8,12 @@
         @method('PATCH')
         <div class="mb-3">
             <label for="title" class="form-label">{{ __('aperos.title') }}</label>
-            <input type="string" class="form-control" id="title" name="title" required>
+            <input type="string" class="form-control" id="title" name="title" value="{{ $apero->title }}" required>
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">{{ __('aperos.description') }}</label>
-            <input type="string" class="form-control" id="description" name="description" required>
+            <input type="string" class="form-control" id="description" name="description" value="{{ $apero->description }}" required>
         </div>
 
         <div class="mb-3">

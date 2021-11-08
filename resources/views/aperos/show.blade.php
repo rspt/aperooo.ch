@@ -27,13 +27,25 @@
     <ul>
         @foreach ($apero->postulants as $postulant)
             <li>
-                {{ __('postulations.status' . $postulant->postulation->status .', :Username', ['username' => $postulant->username]) }}
+                <p>{{ $postulant->postulation->motivation }}</p>
+                {{ __('postulations.status' . $postulant->postulation->status, ['username' => $postulant->username]) }}
 
                 @can ('cancel', $postulant->postulation)
                     <form action="{{ route('postulations.cancel', [$apero, $postulant->postulation]) }}" method="post">
                         @csrf
                         @method('PATCH')
                         <button type="submit" class="btn btn-warning">{{ __('postulations.cancel') }}</button>
+                    </form>
+                @endcan
+                @can ('update', $postulant->postulation)
+                    <form action="{{ route('postulations.update', [$apero, $postulant->postulation]) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <div class="mb-3">
+                            <label for="motivation" class="form-label">{{ __('postulations.update') }}</label>
+                            <input type="string" class="form-control" id="motivation" name="motivation" value="{{ $postulant->postulation->motivation }}">
+                        </div>
+                        <button type="submit" class="btn btn-success">{{ __('postulations.update') }}</button>
                     </form>
                 @endcan
                 @can ('accept', [$postulant->postulation, $apero])

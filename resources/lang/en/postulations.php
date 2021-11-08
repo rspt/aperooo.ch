@@ -13,10 +13,11 @@ return [
     'cancel' => 'Cancel the postulation',
     'accept' => 'Accept this member',
     'decline' => 'Decline this member',
+    'update' => 'Update my postulation',
     'motivation' => 'You can leave a message to support your postulation',
 
-    'statusopen, :Username' => 'User :Username is interested in this aperitif and his postulation is waiting for an answer from the host',
-    'statusaccepted, :Username' => 'User :Username is interested in this party and his postulation has been accepted by the host',
-    'statusdeclined, :Username' => 'User :Username is interested in this party and his postulation has been declineded by the host',
-    'statuscancelled, :Username' => 'The user :Username was interested in this aperitif but he cancelled his postulation',
+    'statusopen' => 'User :username is interested in this aperitif and his postulation is waiting for an answer from the host',
+    'statusaccepted' => 'User :username is interested in this party and his postulation has been accepted by the host',
+    'statusdeclined' => 'User :username is interested in this party and his postulation has been declineded by the host',
+    'statuscancelled' => 'The user :username was interested in this aperitif but he cancelled his postulation',
 ];

@@ -33,7 +33,7 @@ class Apero extends Model
 
     public function postulants()
     {
-        return $this->belongsToMany(User::class)->using(Postulation::class)->withPivot(['id', 'status'])->as('postulation');
+        return $this->belongsToMany(User::class)->using(Postulation::class)->withPivot(['id', 'status', 'motivation'])->as('postulation');
     }
 
     public function getStartFormAttribute()
