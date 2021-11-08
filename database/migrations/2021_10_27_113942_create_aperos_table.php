@@ -16,7 +16,9 @@ class CreateAperosTable extends Migration
         Schema::create('aperos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
             $table->foreignId('host_id')->constrained('users');
+
             $table->string('title');
             $table->text('description');
             $table->dateTimeTz('start');

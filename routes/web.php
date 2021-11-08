@@ -21,9 +21,6 @@ use App\Http\Controllers\PostulationController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('aperos', AperoController::class);
-Route::patch('/aperos/{apero}/close', [AperoController::class, 'close'])->name('aperos.close');
-
 Route::get('/lang/{locale}', function ($locale) {
     if (! in_array($locale, ['en', 'fr'])) {
         abort(400);
@@ -32,6 +29,10 @@ Route::get('/lang/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 });
+
+
+Route::resource('aperos', AperoController::class);
+Route::patch('/aperos/{apero}/close', [AperoController::class, 'close'])->name('aperos.close');
 
 // Auth routes
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');

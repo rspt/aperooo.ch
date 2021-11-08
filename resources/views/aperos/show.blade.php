@@ -2,7 +2,7 @@
 
 @section('content')
     <h2>{{ $apero->title }}</h2>
-    <p>{{ $apero->description }}</p>
+    <p>{!! nl2br(e($apero->description)) !!}</p>
     <p>
         {{ $apero->host->username }} - {{ $apero->start }}
         @if ($apero->displayAddress)

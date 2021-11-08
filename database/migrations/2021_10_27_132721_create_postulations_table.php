@@ -16,9 +16,11 @@ class CreatePostulationsTable extends Migration
         Schema::create('apero_user', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
             $table->foreignId('user_id')->constrained();
             $table->foreignId('apero_id')->constrained();
             $table->unique(['apero_id', 'user_id']);
+
             $table->enum('status', ['open', 'accepted', 'declined', 'cancelled'])->default('open');
             $table->text('motivation')->nullable();
         });

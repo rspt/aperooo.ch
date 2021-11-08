@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Apero;
 use App\Models\Postulation;
 use App\Models\User;
+
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostulationPolicy
@@ -43,10 +44,10 @@ class PostulationPolicy
     public function create(User $user, Apero $apero)
     {
         // If apero is postulable
-        if(!$apero->postulable) {
+        if (!$apero->postulable) {
             return false;
         }
-        
+
         // If user is host, the user can't postulate
         if ($apero->host_id === $user->id) {
             return false;
@@ -69,7 +70,7 @@ class PostulationPolicy
      */
     public function update(User $user, Postulation $postulation)
     {
-        if ($postulation->status === 'open' && $postulation->user_id === $user->id) {
+        if ($postulation->isOpen && $postulation->user_id === $user->id) {
             return true;
         }
 
@@ -86,7 +87,7 @@ class PostulationPolicy
     public function cancel(User $user, Postulation $postulation)
     {
         // Cannot cancel if already cancelled
-        if ($postulation->status === 'cancelled') {
+        if ($postulation->isCancelled) {
             return false;
         }
 
@@ -108,7 +109,7 @@ class PostulationPolicy
     public function accept(User $user, Postulation $postulation, Apero $apero)
     {
         // Cannot accept if not open
-        if ($postulation->status !== 'open') {
+        if (!$postulation->isOpen) {
             return false;
         }
 
@@ -119,7 +120,7 @@ class PostulationPolicy
 
         return true;
     }
- 
+
      /**
      * Determine whether the user can cancel the model.
      *
@@ -130,7 +131,7 @@ class PostulationPolicy
     public function decline(User $user, Postulation $postulation, Apero $apero)
     {
         // Cannot decline if not open
-        if ($postulation->status !== 'open') {
+        if (!$postulation->isOpen) {
             return false;
         }
 

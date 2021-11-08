@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 
 use App\Models\User;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,7 @@ class Apero extends Model
         'description',
         'start',
         'address',
+        'postulable',
     ];
 
     protected $casts = [
@@ -36,11 +38,18 @@ class Apero extends Model
         return $this->belongsToMany(User::class)->using(Postulation::class)->withPivot(['id', 'status', 'motivation'])->as('postulation');
     }
 
+    public function closePostulation()
+    {
+        $this->update([
+            'postulable' => false,
+        ]);
+    }
+
     public function getStartFormAttribute()
     {
         return Carbon::parse($this->start)->format('Y-m-d\TH:i');
     }
-    
+
     public function getDisplayAddressAttribute()
     {
         $user = Auth::user();

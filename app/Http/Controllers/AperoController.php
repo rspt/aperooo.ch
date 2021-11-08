@@ -86,9 +86,8 @@ class AperoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Close the specified Apero.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Apero  $apero
      * @return \Illuminate\Http\Response
      */
@@ -96,8 +95,7 @@ class AperoController extends Controller
     {
         $this->authorize('close', $apero);
 
-        $apero->postulable = false;
-        $apero->save();
+        $apero->closePostulation();
 
         return redirect()->route('aperos.show', $apero);
     }

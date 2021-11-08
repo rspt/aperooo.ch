@@ -13,7 +13,7 @@
 
         <div class="mb-3">
             <label for="description" class="form-label">{{ __('aperos.description') }}</label>
-            <input type="string" class="form-control" id="description" name="description" value="{{ $apero->description }}" required>
+            <textarea class="form-control" id="description" name="description" rows="3" required>{{ $apero->description }}</textarea>
         </div>
 
         <div class="mb-3">

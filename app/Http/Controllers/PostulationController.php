@@ -26,7 +26,7 @@ class PostulationController extends Controller
      */
     public function index()
     {
-        $aperos = Auth::user()->postulations; 
+        $aperos = Auth::user()->postulations;
         $aperos = [
             'open' => $aperos->where('pivot.status', 'open'),
             'cancelled' => $aperos->where('pivot.status', 'cancelled'),
@@ -35,16 +35,6 @@ class PostulationController extends Controller
         ];
 
         return view('postulations.index', compact('aperos'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -80,31 +70,10 @@ class PostulationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Postulation  $postulation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Postulation $postulation)
-    {     
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Postulation  $postulation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Postulation $postulation)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Apero  $apero
      * @param  \App\Models\Postulation  $postulation
      * @return \Illuminate\Http\Response
      */
@@ -113,6 +82,7 @@ class PostulationController extends Controller
         $postulation->update([
             'motivation' => $request->motivation,
         ]);
+
         return redirect()->route('aperos.show', $apero);
     }
 
@@ -120,6 +90,7 @@ class PostulationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Apero  $apero
      * @param  \App\Models\Postulation  $postulation
      * @return \Illuminate\Http\Response
      */
@@ -127,8 +98,7 @@ class PostulationController extends Controller
     {
         $this->authorize('cancel', $postulation);
 
-        $postulation->status = 'cancelled';
-        $postulation->save();
+        $postulation->cancel();
 
         return redirect()->route('aperos.show', $postulation->apero_id);
     }
@@ -137,6 +107,7 @@ class PostulationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Apero  $apero
      * @param  \App\Models\Postulation  $postulation
      * @return \Illuminate\Http\Response
      */
@@ -144,8 +115,7 @@ class PostulationController extends Controller
     {
         $this->authorize('accept', [$postulation, $apero]);
 
-        $postulation->status = 'accepted';
-        $postulation->save();
+        $postulation->accept();
 
         return redirect()->route('aperos.show', $postulation->apero_id);
     }
@@ -154,6 +124,7 @@ class PostulationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Apero  $apero
      * @param  \App\Models\Postulation  $postulation
      * @return \Illuminate\Http\Response
      */
@@ -161,20 +132,8 @@ class PostulationController extends Controller
     {
         $this->authorize('decline', [$postulation, $apero]);
 
-        $postulation->status = 'declined';
-        $postulation->save();
+        $postulation->decline();
 
         return redirect()->route('aperos.show', $postulation->apero_id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Postulation  $postulation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Postulation $postulation)
-    {
-        //
     }
 }

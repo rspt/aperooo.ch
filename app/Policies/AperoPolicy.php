@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Apero;
 use App\Models\User;
+
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AperoPolicy
@@ -56,6 +57,8 @@ class AperoPolicy
         if ($user->id === $apero->host_id) {
             return true;
         }
+
+        return false;
     }
 
     /**
@@ -70,6 +73,8 @@ class AperoPolicy
         if ($user->id === $apero->host_id && $apero->postulable) {
             return true;
         }
+
+        return false;
     }
 
     /**
@@ -84,6 +89,8 @@ class AperoPolicy
         if ($user->id === $apero->host_id) {
             return true;
         }
+
+        return false;
     }
 
     /**
