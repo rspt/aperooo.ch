@@ -27,8 +27,8 @@
     <ul>
         @foreach ($apero->postulants as $postulant)
             <li>
-                <p>{!! nl2br(e($postulant->postulation->motivation)) !!}</p>
-                {{ __('postulations.status' . ucfirst($postulant->postulation->status), ['username' => $postulant->username]) }}
+                <p>{{ $postulant->postulation->motivation }}</p>
+                {{ __('postulations.status' . $postulant->postulation->status, ['username' => $postulant->username]) }}
 
                 @can ('cancel', $postulant->postulation)
                     <form action="{{ route('postulations.cancel', [$apero, $postulant->postulation]) }}" method="post">
