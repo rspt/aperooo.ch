@@ -45,7 +45,7 @@ class Apero extends Model
         ]);
     }
 
-    public function getIsOpenForPostulation()
+    public function getIsOpenForPostulationAttribute()
     {
         return $this->postulable;
     }
