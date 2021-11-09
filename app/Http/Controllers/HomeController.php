@@ -7,12 +7,16 @@ use App\Models\Apero;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     public function index()
     {
         if (Auth::check()) {
-            $aperos = Apero::all();
+            $aperos = Apero::where("start", ">=", Carbon::now())
+                        ->orderBy("start")
+                        ->get();
 
             return view('home', compact('aperos'));
         }
