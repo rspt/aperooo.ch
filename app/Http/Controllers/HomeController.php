@@ -14,8 +14,9 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $aperos = Apero::where("start", ">=", Carbon::now())
-                        ->orderBy("start")
+            $aperos = Apero::where('start', '>=', Carbon::now())
+                        ->where('postulable', true)
+                        ->orderBy('start')
                         ->get();
 
             return view('home', compact('aperos'));
