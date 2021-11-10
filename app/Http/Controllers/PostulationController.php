@@ -26,7 +26,7 @@ class PostulationController extends Controller
      */
     public function index()
     {
-        $aperos = Auth::user()->postulations;
+        $aperos = Auth::user()->postulations->sortBy('start');
         $aperos = [
             'open' => $aperos->where('pivot.status', 'open'),
             'cancelled' => $aperos->where('pivot.status', 'cancelled'),

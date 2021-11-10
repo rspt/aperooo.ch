@@ -21,7 +21,7 @@ class AperoController extends Controller
      */
     public function index()
     {
-        $userAperos = Auth::user()->aperos;
+        $userAperos = Auth::user()->aperos->sortBy('start');
 
         return view('aperos.index', compact('userAperos'));
     }
