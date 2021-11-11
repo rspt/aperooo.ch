@@ -20,4 +20,8 @@ return [
     'statusAccepted' => 'User :username is interested in this party and his postulation has been accepted by the host',
     'statusDeclined' => 'User :username is interested in this party and his postulation has been declineded by the host',
     'statusCancelled' => 'The user :username was interested in this aperitif but he cancelled his postulation',
+
+    'cancelled' => 'You had applied but changed your mind',
+    'declined' => 'The host refused you for this apero',
+    'accepted' => 'The host has accepted you for this apero',
 ];

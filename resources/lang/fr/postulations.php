@@ -21,4 +21,9 @@ return [
     'statusDeclined' => 'L\'utilisateur :username est intéressé par cet apéro et sa postulation a été refusée par l\'hôte',
     'statusCancelled' => 'L\'utilisateur :username était intéressé par cet apéro mais il a annulé sa postulation',
 
+    'cancelled' => 'Vous aviez postulé mais vous vous êtes ravisé',
+    'declined' => 'L\'hôte vous a refusé pour cet apéro',
+    'accepted' => 'L\'hôte vous a accepté pour cet apéro',
+
+
 ];

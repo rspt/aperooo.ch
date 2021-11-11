@@ -23,13 +23,33 @@
             <button type="submit" class="btn btn-success">{{ __('postulations.apply') }}</button>
         </form>
     @endcan
-
+    @if (Auth::user()->id === $apero->host_id )
     <ul>
         @foreach ($apero->postulants as $postulant)
             <li>
                 <p>{{ $postulant->postulation->motivation }}</p>
                 {{ __('postulations.status' . ucfirst($postulant->postulation->status), ['username' => $postulant->username]) }}
 
+                @can ('accept', [$postulant->postulation, $apero])
+                    <form action="{{ route('postulations.accept', [$apero, $postulant->postulation]) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-success">{{ __('postulations.accept') }}</button>
+                    </form>
+                @endcan
+                @can ('decline', [$postulant->postulation, $apero])
+                    <form action="{{ route('postulations.decline', [$apero, $postulant->postulation]) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-warning">{{ __('postulations.decline') }}</button>
+                    </form>
+                @endcan
+            </li>
+        @endforeach
+    </ul>
+    @else
+        @foreach ($apero->postulants as $postulant)
+            @if (Auth::user()->id === $postulant->postulation->user_id)
                 @can ('cancel', $postulant->postulation)
                     <form action="{{ route('postulations.cancel', [$apero, $postulant->postulation]) }}" method="post">
                         @csrf
@@ -48,24 +68,16 @@
                         <button type="submit" class="btn btn-success">{{ __('postulations.update') }}</button>
                     </form>
                 @endcan
-                @can ('accept', [$postulant->postulation, $apero])
-                    <form action="{{ route('postulations.accept', [$apero, $postulant->postulation]) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="btn btn-success">{{ __('postulations.accept') }}</button>
-                    </form>
-                @endcan
-                @can ('decline', [$postulant->postulation, $apero])
-                    <form action="{{ route('postulations.decline', [$apero, $postulant->postulation]) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="btn btn-warning">{{ __('postulations.decline') }}</button>
-                    </form>
-                @endcan
-            </li>
-        @endforeach
-    </ul>
-
+                @if ($postulant->postulation->status === 'cancelled')
+                    <p>{{ __('postulations.cancelled')}}</p>
+                @elseif ($postulant->postulation->status === 'declined')
+                    <p>{{ __('postulations.declined')}}</p>
+                @elseif ($postulant->postulation->status === 'accepted')
+                    <p>{{ __('postulations.accepted')}}</p>
+                @endif
+            @endif
+        @endforeach       
+    @endif
     @canany(['update', 'delete', 'close'], $apero)
         <hr>
 
