@@ -33,6 +33,7 @@ Route::get('/lang/{locale}', function ($locale) {
 
 Route::resource('aperos', AperoController::class);
 Route::patch('/aperos/{apero}/close', [AperoController::class, 'close'])->name('aperos.close');
+Route::patch('/aperos/{apero}/cancel', [AperoController::class, 'cancel'])->name('aperos.cancel');
 
 // Auth routes
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');

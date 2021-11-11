@@ -12,4 +12,5 @@ return [
     'edit' => 'Modifier',
     'close' => 'Clore les postulations',
     'delete' => 'Supprimer',
+    'cancel' => 'Annuler',
 ];
