@@ -24,6 +24,4 @@ return [
     'cancelled' => 'Vous aviez postulé mais vous vous êtes ravisé',
     'declined' => 'L\'hôte vous a refusé pour cet apéro',
     'accepted' => 'L\'hôte vous a accepté pour cet apéro',
-
-
 ];
