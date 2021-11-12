@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return Postulation::where('apero_id', $apero->id)->where('user_id', $this->id)->exists();
     }
+
+    public function postulationFor(Apero $apero)
+    {
+        return Postulation::where('apero_id', $apero->id)->where('user_id', $this->id)->first();
+    }
 }
