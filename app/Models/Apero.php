@@ -50,6 +50,7 @@ class Apero extends Model
     {
         $this->update([
             'active' => false,
+            'postulable' => false,
         ]);
     }
     
@@ -58,9 +59,9 @@ class Apero extends Model
         return $this->postulable;
     }
 
-    public function getIsNotCancelAttribute()
+    public function getIsCancelAttribute()
     {
-        return $this->active;
+        return !$this->active;
     }
 
     public function getStartFormAttribute()

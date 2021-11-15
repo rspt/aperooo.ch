@@ -9,7 +9,7 @@
             - {{ $apero->address }}
         @endif
     </p>
-    @if(!$apero->isNotCancel)
+    @if($apero->isCancel)
         <p>{{ __('aperos.cancelled', ['username' => $apero->host->username]) }}</p>
     @endif
     @if (!$apero->isOpenForPostulation)
