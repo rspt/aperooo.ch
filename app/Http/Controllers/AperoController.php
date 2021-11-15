@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apero;
+use App\Models\Postulation;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -112,6 +113,10 @@ class AperoController extends Controller
 
         $apero->cancelApero();
         $apero->closePostulation();
+
+        $postulations = Postulation::where('apero_id', $apero->id)->get(); 
+        foreach ($postulations as $postulation)
+        $postulation->decline();
 
         return redirect()->route('aperos.show', $apero);
     }

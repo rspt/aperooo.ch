@@ -58,6 +58,11 @@ class Apero extends Model
         return $this->postulable;
     }
 
+    public function getIsNotCancelAttribute()
+    {
+        return $this->active;
+    }
+
     public function getStartFormAttribute()
     {
         return Carbon::parse($this->start)->format('Y-m-d\TH:i');
