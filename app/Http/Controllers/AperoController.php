@@ -110,12 +110,10 @@ class AperoController extends Controller
     public function cancel(Apero $apero)
     {
         $this->authorize('cancel', $apero);
-
         $apero->cancelApero();
 
-        $postulations = Postulation::where('apero_id', $apero->id)->get(); 
-        foreach ($postulations as $postulation) {
-            $postulation->decline();
+        foreach ($apero->postulants as $postulant) {
+            $postulant->postulation->decline();
         }
 
         return redirect()->route('aperos.show', $apero);
