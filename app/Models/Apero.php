@@ -22,6 +22,7 @@ class Apero extends Model
         'start',
         'address',
         'postulable',
+        'active',
     ];
 
     protected $casts = [
@@ -44,10 +45,23 @@ class Apero extends Model
             'postulable' => false,
         ]);
     }
-
+    
+    public function cancelApero()
+    {
+        $this->update([
+            'active' => false,
+            'postulable' => false,
+        ]);
+    }
+    
     public function getIsOpenForPostulationAttribute()
     {
         return $this->postulable;
+    }
+
+    public function getIsCancelledAttribute()
+    {
+        return !$this->active;
     }
 
     public function getStartFormAttribute()
