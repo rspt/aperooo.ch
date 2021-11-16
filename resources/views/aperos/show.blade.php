@@ -55,6 +55,10 @@
                     <form action="{{ route('postulations.accept', [$apero, $postulant->postulation]) }}" method="post">
                         @csrf
                         @method('PATCH')
+                        <div class="mb-3">
+                            <label for="message_accept" class="form-label">{{ __('postulations.messageAccept') }}</label>
+                            <textarea class="form-control" id="message_accept" name="message_accept" rows="3"></textarea>
+                        </div>
                         <button type="submit" class="btn btn-success">{{ __('postulations.accept') }}</button>
                     </form>
                 @endcan
@@ -62,6 +66,10 @@
                     <form action="{{ route('postulations.decline', [$apero, $postulant->postulation]) }}" method="post">
                         @csrf
                         @method('PATCH')
+                        <div class="mb-3">
+                            <label for="message_decline" class="form-label">{{ __('postulations.messageDecline') }}</label>
+                            <textarea class="form-control" id="message_decline" name="message_decline" rows="3"></textarea>
+                        </div>
                         <button type="submit" class="btn btn-warning">{{ __('postulations.decline') }}</button>
                     </form>
                 @endcan

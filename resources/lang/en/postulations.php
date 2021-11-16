@@ -11,7 +11,9 @@ return [
     'closed' => 'Registrations are closed',
 
     'cancel' => 'Cancel the postulation',
+    'messageAccept' => 'You can leave a message accepting this postulation',
     'accept' => 'Accept this member',
+    'messageDecline' => 'You can leave a message declining this application',
     'decline' => 'Decline this member',
     'update' => 'Update my postulation',
     'motivation' => 'You can leave a message to support your postulation',

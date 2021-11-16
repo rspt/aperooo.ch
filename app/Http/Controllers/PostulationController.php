@@ -115,6 +115,9 @@ class PostulationController extends Controller
     {
         $this->authorize('accept', [$postulation, $apero]);
 
+        $postulation->update([
+            'message' => $request->message_accept,
+        ]);
         $postulation->accept();
 
         return redirect()->route('aperos.show', $postulation->apero_id);
@@ -132,6 +135,9 @@ class PostulationController extends Controller
     {
         $this->authorize('decline', [$postulation, $apero]);
 
+        $postulation->update([
+            'message' => $request->message_decline,
+        ]);
         $postulation->decline();
 
         return redirect()->route('aperos.show', $postulation->apero_id);

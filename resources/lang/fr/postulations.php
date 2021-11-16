@@ -11,7 +11,9 @@ return [
     'closed' => 'Les inscriptions sont cloturées',
 
     'cancel' => 'Annuler la postulation',
+    'messageAccept' => 'Vous pouvez laisser un message en acceptant cette postulation',
     'accept' => 'Accepter ce membre',
+    'messageDecline' => 'Vous pouvez laisser un message en déclinant cette postulation',
     'decline' => 'Refuser ce membre',
     'update' => 'Modifier ma postulation',
     'motivation' => 'Vous pouvez laisser un message pour appuyer votre postulation',
