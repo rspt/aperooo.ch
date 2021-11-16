@@ -59,7 +59,7 @@ class Apero extends Model
         return $this->postulable;
     }
 
-    public function getIsCancelAttribute()
+    public function getIsCancelledAttribute()
     {
         return !$this->active;
     }

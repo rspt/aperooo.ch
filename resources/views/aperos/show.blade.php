@@ -9,7 +9,7 @@
             - {{ $apero->address }}
         @endif
     </p>
-    @if($apero->isCancel)
+    @if($apero->isCancelled)
         <p>{{ __('aperos.cancelled', ['username' => $apero->host->username]) }}</p>
     @endif
     @if (!$apero->isOpenForPostulation)
@@ -69,7 +69,7 @@
         @endforeach
     </ul>
 
-    @canany(['update', 'delete', 'close', 'cancel'], $apero)
+    @if (auth()->user()->isHostOf($apero))
         <hr>
         @can('update', $apero)
             <a href="{{ route('aperos.edit', $apero) }}" class="btn btn-primary">{{ __('site.edit') }}</a>
@@ -97,5 +97,5 @@
                 <button type="submit" class="btn btn-danger">{{ __('site.delete') }}</button>
             </form>
         @endcan
-    @endcanany
+    @endif
 @endsection
