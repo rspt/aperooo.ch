@@ -14,7 +14,7 @@ class UpdatePostulationForMessage extends Migration
     public function up()
     {
         Schema::table('apero_user', function (Blueprint $table) {
-            $table->text('message');
+            $table->text('message')->nullable();
         });
     }
 

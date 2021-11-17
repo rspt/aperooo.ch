@@ -9,10 +9,11 @@ class Postulation extends Pivot
 {
     protected $table = 'apero_user';
 
-    public function accept()
+    public function accept($message)
     {
         $this->update([
             'status' => 'accepted',
+            'message' => $message ? $message : $this->message,
         ]);
     }
 
@@ -23,10 +24,11 @@ class Postulation extends Pivot
         ]);
     }
 
-    public function decline()
+    public function decline($message)
     {
         $this->update([
             'status' => 'declined',
+            'message' => $message ? $message : $this->message,
         ]);
     }
 
