@@ -98,7 +98,7 @@ class PostulationController extends Controller
     {
         $this->authorize('cancel', $postulation);
 
-        $postulation->cancel();
+        $postulation->cancel($request->message_cancel);
 
         return redirect()->route('aperos.show', $postulation->apero_id);
     }

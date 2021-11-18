@@ -17,10 +17,11 @@ class Postulation extends Pivot
         ]);
     }
 
-    public function cancel()
+    public function cancel($messageCancel)
     {
         $this->update([
             'status' => 'cancelled',
+            'message_cancel' => $messageCancel ? $messageCancel : $this->messageCancel,
         ]);
     }
 

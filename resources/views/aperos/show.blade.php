@@ -31,7 +31,10 @@
             @foreach ($apero->postulants as $postulant)
                 <li>
                     <p>{{ $postulant->postulation->motivation }}</p>
-                    <p>{{ __('postulations.status' . ucfirst($postulant->postulation->status), ['username' => $postulant->username]) }}</p>
+                    <p>{{ __('postulations.status' . ucfirst($postulant->postulation->status), ['username' => $postulant->username]) }}
+                    @if (!is_null($postulant->postulation->message_cancel))
+                        {{ __('postulations.postulantCancel') }} "{{ $postulant->postulation->message_cancel }}"</p>
+                    @endif
                     @can ('accept', [$postulant->postulation, $apero])
                         <form action="{{ route('postulations.accept', [$apero, $postulant->postulation]) }}" method="post">
                             @csrf
@@ -66,6 +69,10 @@
                 <form action="{{ route('postulations.cancel', [$apero, $postulation]) }}" method="post">
                     @csrf
                     @method('PATCH')
+                    <div class="mb-3">
+                        <label for="message_cancel" class="form-label">{{ __('postulations.messageCancel') }}</label>
+                        <textarea class="form-control" id="message_cancel" name="message_cancel" rows="3"></textarea>
+                    </div>
                     <button type="submit" class="btn btn-warning">{{ __('postulations.cancel') }}</button>
                 </form>
             @endcan
@@ -80,14 +87,21 @@
                     <button type="submit" class="btn btn-success">{{ __('postulations.update') }}</button>
                 </form>
             @endcan
+            @if ($postulation->motivation)
+                <p>{{ __('postulations.yourMotivation') }}</p>
+                <p>"{{ $postulation->motivation }}"</p>
+            @endif
             @if ($postulation->status === 'cancelled')
                 <p>{{ __('postulations.cancelled') }}</p>
+                @if ($postulation->message_cancel)
+                    <p>{{ __('postulations.cancellationMessage') }} "{{ $postulation->message_cancel }}"</p>
+                @endif
             @elseif ($postulation->status === 'declined')
                 <p>{{ __('postulations.declined') }}</p>
             @elseif ($postulation->status === 'accepted')
                 <p>{{ __('postulations.accepted') }}</p>
             @endif
-            @if ($postulation->message)
+            @if (!is_null($postulation->message) && $postulation->status !== 'cancelled')
                 <p>{{ __('postulations.message') }}</p>
                 <p>{{ $postulation->message }}</p>
             @endif

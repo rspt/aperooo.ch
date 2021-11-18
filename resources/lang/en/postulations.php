@@ -10,6 +10,7 @@ return [
     'alreadyPostulate' => 'You already postulate to this Apero',
     'closed' => 'Registrations are closed',
 
+    'messageCancel' => 'You can leave a message by cancelling your postulation',
     'cancel' => 'Cancel the postulation',
     'messageAccept' => 'You can leave a message accepting this postulation',
     'accept' => 'Accept this member',
@@ -24,7 +25,10 @@ return [
     'statusCancelled' => 'The user :username was interested in this aperitif but he cancelled his postulation',
 
     'cancelled' => 'You had applied but changed your mind',
+    'cancellationMessage' => 'You have left this message by cancelling :',
     'declined' => 'The host refused you for this apero',
     'accepted' => 'The host has accepted you for this apero',
-    'message' => 'and he left you this message :'
+    'message' => 'and he left you this message :',
+    'yourMotivation' =>'When applying you left this message to the host :',
+    'postulantCancel' => 'by leaving this message :',
 ];

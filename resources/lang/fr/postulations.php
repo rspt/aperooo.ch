@@ -10,6 +10,7 @@ return [
     'alreadyPostulate' => 'Vous avez déjà postulé à cet apéro',
     'closed' => 'Les inscriptions sont cloturées',
 
+    'messageCancel' => 'Vous pouvez laisser un message en annulant votre postulation',
     'cancel' => 'Annuler la postulation',
     'messageAccept' => 'Vous pouvez laisser un message en acceptant cette postulation',
     'accept' => 'Accepter ce membre',
@@ -24,7 +25,10 @@ return [
     'statusCancelled' => 'L\'utilisateur :username était intéressé par cet apéro mais il a annulé sa postulation',
 
     'cancelled' => 'Vous aviez postulé mais vous vous êtes ravisé',
+    'cancellationMessage' => 'Vous avez laissé ce message en annulant :',
     'declined' => 'L\'hôte vous a refusé pour cet apéro',
     'accepted' => 'L\'hôte vous a accepté pour cet apéro',
     'message' => 'et vous a laissé ce message :',
+    'yourMotivation' => 'Lors de la postulation vous avez laissé ce message à l\'hôte :',
+    'postulantCancel' => 'en laissant ce message :'
 ];
