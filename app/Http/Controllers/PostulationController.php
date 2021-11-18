@@ -46,7 +46,7 @@ class PostulationController extends Controller
     public function store(Request $request, Apero $apero)
     {
         $this->authorize('create', [Postulation::class, $apero]);
-        
+
         try {
             Postulation::create([
                 'user_id' => Auth::user()->id,
@@ -55,7 +55,7 @@ class PostulationController extends Controller
             ]);
         } catch (QueryException $e) {
             $sqlErrorCode = $e->errorInfo[1];
-            
+
             switch ($sqlErrorCode) {
                 case '1062':
                     back()->with('alert', [
