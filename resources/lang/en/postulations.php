@@ -26,5 +26,5 @@ return [
     'cancelled' => 'You had applied but changed your mind',
     'declined' => 'The host refused you for this apero',
     'accepted' => 'The host has accepted you for this apero',
-    'message' => 'and he leaves you this message :'
+    'message' => 'and he left you this message :'
 ];
