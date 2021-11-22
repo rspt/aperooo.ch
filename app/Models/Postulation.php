@@ -43,6 +43,11 @@ class Postulation extends Pivot
         return $this->status === 'accepted';
     }
 
+    public function getIsDeclinedAttribute()
+    {
+        return $this->status === 'declined';
+    }
+
     public function getIsCancelledAttribute()
     {
         return $this->status === 'cancelled';

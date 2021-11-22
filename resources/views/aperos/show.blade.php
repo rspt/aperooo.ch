@@ -91,17 +91,17 @@
                 <p>{{ __('postulations.yourMotivation') }}</p>
                 <p>"{{ $postulation->motivation }}"</p>
             @endif
-            @if ($postulation->status === 'cancelled')
+            @if ($postulation->isCancelled)
                 <p>{{ __('postulations.cancelled') }}</p>
                 @if ($postulation->message_cancel)
                     <p>{{ __('postulations.cancellationMessage') }} "{{ $postulation->message_cancel }}"</p>
                 @endif
-            @elseif ($postulation->status === 'declined')
+            @elseif ($postulation->isDeclined)
                 <p>{{ __('postulations.declined') }}</p>
             @elseif ($postulation->status === 'accepted')
                 <p>{{ __('postulations.accepted') }}</p>
             @endif
-            @if (!is_null($postulation->message) && $postulation->status !== 'cancelled')
+            @if (isset($postulation->message) && !$postulation->isCancelled)
                 <p>{{ __('postulations.message') }}</p>
                 <p>{{ $postulation->message }}</p>
             @endif
