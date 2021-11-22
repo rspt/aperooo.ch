@@ -36,7 +36,7 @@ class Apero extends Model
 
     public function postulants()
     {
-        return $this->belongsToMany(User::class)->using(Postulation::class)->withPivot(['id', 'status', 'motivation'])->as('postulation');
+        return $this->belongsToMany(User::class)->using(Postulation::class)->withPivot(['id', 'status', 'motivation', 'message', 'message_cancel'])->as('postulation');
     }
 
     public function closePostulation()

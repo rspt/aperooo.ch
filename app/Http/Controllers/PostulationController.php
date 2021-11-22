@@ -98,7 +98,7 @@ class PostulationController extends Controller
     {
         $this->authorize('cancel', $postulation);
 
-        $postulation->cancel();
+        $postulation->cancel($request->message_cancel);
 
         return redirect()->route('aperos.show', $postulation->apero_id);
     }
@@ -115,7 +115,7 @@ class PostulationController extends Controller
     {
         $this->authorize('accept', [$postulation, $apero]);
 
-        $postulation->accept();
+        $postulation->accept($request->message);
 
         return redirect()->route('aperos.show', $postulation->apero_id);
     }
@@ -132,7 +132,7 @@ class PostulationController extends Controller
     {
         $this->authorize('decline', [$postulation, $apero]);
 
-        $postulation->decline();
+        $postulation->decline($request->message);
 
         return redirect()->route('aperos.show', $postulation->apero_id);
     }

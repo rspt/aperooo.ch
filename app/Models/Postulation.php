@@ -9,24 +9,27 @@ class Postulation extends Pivot
 {
     protected $table = 'apero_user';
 
-    public function accept()
+    public function accept($message)
     {
         $this->update([
             'status' => 'accepted',
+            'message' => $message ? $message : $this->message,
         ]);
     }
 
-    public function cancel()
+    public function cancel($messageCancel)
     {
         $this->update([
             'status' => 'cancelled',
+            'message_cancel' => $messageCancel ? $messageCancel : $this->messageCancel,
         ]);
     }
 
-    public function decline()
+    public function decline($message)
     {
         $this->update([
             'status' => 'declined',
+            'message' => $message ? $message : $this->message,
         ]);
     }
 
@@ -38,6 +41,11 @@ class Postulation extends Pivot
     public function getIsAcceptedAttribute()
     {
         return $this->status === 'accepted';
+    }
+
+    public function getIsDeclinedAttribute()
+    {
+        return $this->status === 'declined';
     }
 
     public function getIsCancelledAttribute()
