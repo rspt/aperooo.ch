@@ -8,6 +8,7 @@ return [
     'editAperos' => 'Edit apéro',
 
     'usernameAlreadyExists' => 'This username already exists',
+    'errorLogin' => 'The connexion failed',
 
     'edit' => 'Edit',
     'close' => 'Close the postulations',
