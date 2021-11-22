@@ -29,7 +29,10 @@ class AuthController extends Controller
             return redirect()->route('home');
         }
 
-        return back()->withErrors([]);
+        return back()->with('alert', [
+            'message' => 'site.errorLogin',
+            'type' => 'error',
+        ]);
     }
 
     public function logout(Request $request)

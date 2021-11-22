@@ -8,6 +8,7 @@ return [
     'editAperos' => 'Modifier l\'apéro',
 
     'usernameAlreadyExists' => 'Ce pseudonyme est déjà utilisé',
+    'errorLogin' => 'La connexion a échoué',
 
     'edit' => 'Modifier',
     'close' => 'Clore les postulations',
