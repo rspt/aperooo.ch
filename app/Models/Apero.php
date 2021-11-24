@@ -27,6 +27,7 @@ class Apero extends Model
 
     protected $casts = [
         'start' => 'datetime',
+        'host_id' => 'integer',
     ];
 
     public function host()

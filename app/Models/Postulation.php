@@ -9,6 +9,11 @@ class Postulation extends Pivot
 {
     protected $table = 'apero_user';
 
+    protected $casts = [
+        'user_id' => 'integer', // force casting to avoid string on old databases (o2switch) 
+        'apero_id' => 'integer', // force casting to avoid string on old databases (o2switch) 
+    ];
+
     public function accept($message)
     {
         $this->update([
