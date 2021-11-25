@@ -98,7 +98,7 @@
                 @endif
             @elseif ($postulation->isDeclined)
                 <p>{{ __('postulations.declined') }}</p>
-            @elseif ($postulation->status === 'accepted')
+            @elseif ($postulation->isAccepted)
                 <p>{{ __('postulations.accepted') }}</p>
             @endif
             @if (isset($postulation->message) && !$postulation->isCancelled)
